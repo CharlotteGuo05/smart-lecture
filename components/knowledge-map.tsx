@@ -19,7 +19,7 @@ import "@xyflow/react/dist/style.css"
 function RootNode({ data }: { data: { label: string } }) {
   return (
     <div className="rounded-xl border-2 border-primary bg-primary/15 px-5 py-3 shadow-lg shadow-primary/5">
-      <p className="text-center text-sm font-bold text-primary">{data.label}</p>
+      <p className="text-center text-base font-bold text-primary">{data.label}</p>
       <Handle type="source" position={Position.Bottom} className="!bg-primary" />
     </div>
   )
@@ -29,7 +29,7 @@ function SectionNode({ data }: { data: { label: string } }) {
   return (
     <div className="rounded-lg border border-border bg-card px-4 py-2.5 shadow-md">
       <Handle type="target" position={Position.Top} className="!bg-muted-foreground" />
-      <p className="text-center text-xs font-semibold text-foreground">{data.label}</p>
+      <p className="text-center text-sm font-semibold text-foreground">{data.label}</p>
       <Handle type="source" position={Position.Bottom} className="!bg-muted-foreground" />
     </div>
   )
@@ -39,8 +39,8 @@ function SubNode({ data }: { data: { label: string; timestamp: string } }) {
   return (
     <div className="rounded-md border border-border/60 bg-secondary px-3 py-2 shadow-sm">
       <Handle type="target" position={Position.Top} className="!bg-muted-foreground/50" />
-      <p className="text-center text-[11px] text-foreground/80">{data.label}</p>
-      <p className="mt-0.5 text-center font-mono text-[9px] text-primary">{data.timestamp}</p>
+      <p className="text-center text-xs text-foreground/80">{data.label}</p>
+      <p className="mt-0.5 text-center font-mono text-[10px] text-primary">{data.timestamp}</p>
     </div>
   )
 }
@@ -124,8 +124,8 @@ export function KnowledgeMap() {
     return (
       <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border bg-card p-8">
         <Network className="mb-3 h-8 w-8 text-primary/50" />
-        <p className="mb-1 text-sm font-medium text-foreground">Knowledge Map</p>
-        <p className="mb-4 text-xs text-muted-foreground">
+        <p className="mb-1 text-base font-medium text-foreground">Knowledge Map</p>
+        <p className="mb-4 text-sm text-muted-foreground">
           Generate a structured knowledge map of the lecture content.
         </p>
         <Button
@@ -149,9 +149,9 @@ export function KnowledgeMap() {
 
   return (
     <div className="rounded-lg border border-border bg-card">
-      <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+      <div className="flex items-center gap-2 border-b border-border px-4 py-4">
         <Network className="h-4 w-4 text-primary" />
-        <h3 className="text-sm font-semibold text-foreground">Knowledge Map</h3>
+          <h3 className="text-2xl font-semibold text-foreground">Knowledge Map</h3>
       </div>
       <div className="h-[350px]">
         <ReactFlow

@@ -31,7 +31,7 @@ export function LectureNavigator({ onSeek }: LectureNavigatorProps) {
                 value={`section-${i}`}
                 className="rounded-md border-none"
               >
-                <AccordionTrigger className="rounded-md px-3 py-2 text-xs font-medium text-foreground hover:bg-accent hover:no-underline [&[data-state=open]]:bg-accent/50">
+                <AccordionTrigger className="rounded-md px-3 py-2 text-base font-medium text-foreground hover:bg-accent hover:no-underline [&[data-state=open]]:bg-accent/50">
                   {section.title}
                 </AccordionTrigger>
                 <AccordionContent className="pb-1 pt-0">
@@ -45,16 +45,16 @@ export function LectureNavigator({ onSeek }: LectureNavigatorProps) {
                           variant="ghost"
                           size="sm"
                           onClick={() => onSeek(sub.seconds)}
-                          className="h-5 shrink-0 gap-1 rounded px-1.5 py-0 text-[10px] font-mono text-primary hover:bg-primary/10 hover:text-primary"
+                          className="h-5 shrink-0 gap-1 rounded px-1.5 py-0 text-[10px] font-mono text-primary hover:bg-primary/10 hover:text-primary cursor-pointer"
                         >
-                          <Clock className="h-2.5 w-2.5" />
+                          <Clock className="h-2.5 w-2.5 cursor-pointer" />
                           {sub.timestamp}
                         </Button>
                         <div className="min-w-0 flex-1">
-                          <p className="text-xs font-medium leading-tight text-foreground/90">
+                          <p className="text-base font-medium leading-tight text-foreground/90">
                             {sub.title}
                           </p>
-                          <p className="mt-0.5 text-[10px] leading-snug text-muted-foreground">
+                          <p className="mt-0.5 text-sm leading-snug text-muted-foreground">
                             {sub.summary}
                           </p>
                         </div>

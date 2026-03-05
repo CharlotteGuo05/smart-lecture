@@ -68,7 +68,7 @@ export function ProfessorChat({ onSeek }: ProfessorChatProps) {
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
                 <Bot className="h-5 w-5 text-primary" />
               </div>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 Ask the AI Professor a question<br />
                 and get answers based on the lecture content.
               </p>
@@ -85,7 +85,7 @@ export function ProfessorChat({ onSeek }: ProfessorChatProps) {
                 </div>
               )}
               <div
-                className={`max-w-[85%] rounded-lg px-3 py-2 text-xs leading-relaxed ${
+                className={`max-w-[85%] rounded-lg px-3 py-2 text-base leading-relaxed ${
                   msg.role === "user"
                     ? "bg-primary text-primary-foreground"
                     : "bg-accent text-foreground"
@@ -100,7 +100,7 @@ export function ProfessorChat({ onSeek }: ProfessorChatProps) {
                         variant="ghost"
                         size="sm"
                         onClick={() => onSeek(cite.seconds)}
-                        className="h-5 gap-1 rounded-sm bg-primary/10 px-1.5 py-0 text-[10px] font-medium text-primary hover:bg-primary/20 hover:text-primary"
+                        className="h-5 gap-1 rounded-sm bg-primary/10 px-1.5 py-0 text-sm font-medium text-primary hover:bg-primary/20 hover:text-primary"
                       >
                         <Clock className="h-2.5 w-2.5" />
                         {cite.timestamp} - {cite.text}
@@ -145,7 +145,7 @@ export function ProfessorChat({ onSeek }: ProfessorChatProps) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask the professor..."
-            className="h-8 flex-1 bg-secondary text-xs text-foreground placeholder:text-muted-foreground"
+            className="h-8 flex-1 bg-secondary text-base text-foreground placeholder:text-muted-foreground"
             disabled={isTyping}
           />
           <Button

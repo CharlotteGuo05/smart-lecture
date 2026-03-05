@@ -40,8 +40,8 @@ export function StudySnaps() {
     return (
       <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border bg-card p-8">
         <Sparkles className="mb-3 h-8 w-8 text-primary/50" />
-        <p className="mb-1 text-sm font-medium text-foreground">Study Snaps</p>
-        <p className="mb-4 text-xs text-muted-foreground">
+        <p className="mb-1 text-base font-medium text-foreground">Study Snaps</p>
+        <p className="mb-4 text-sm text-muted-foreground">
           Generate flashcards based on the lecture content for review.
         </p>
         <Button
@@ -68,7 +68,7 @@ export function StudySnaps() {
       <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Sparkles className="h-4 w-4 text-primary" />
-          <h3 className="text-sm font-semibold text-foreground">Study Snaps</h3>
+          <h3 className="text-2xl font-semibold text-foreground">Study Snaps</h3>
         </div>
         <span className="text-xs text-muted-foreground">
           {currentIndex + 1} / {flashcardsData.length}
@@ -102,10 +102,10 @@ export function StudySnaps() {
             }`}
           >
             <div className="text-center">
-              <span className="mb-2 inline-block rounded-full bg-accent px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+              <span className="mb-2 inline-block rounded-full bg-accent px-2 py-0.5 text-xs font-medium text-muted-foreground">
                 {isFlipped ? "Answer" : "Question"}
               </span>
-              <p className="text-sm leading-relaxed text-foreground">
+              <p className="text-base leading-relaxed text-foreground">
                 {isFlipped ? card.answer : card.question}
               </p>
             </div>
@@ -114,11 +114,11 @@ export function StudySnaps() {
       </div>
 
       <div className="flex items-center justify-between">
-        <Button
+          <Button
           variant="ghost"
           size="sm"
           onClick={handlePrev}
-          className="h-7 gap-1 text-xs text-muted-foreground hover:text-foreground"
+          className="h-7 gap-1 text-sm text-muted-foreground hover:text-foreground"
         >
           <ChevronLeft className="h-3.5 w-3.5" />
           Previous
@@ -127,7 +127,7 @@ export function StudySnaps() {
           variant="ghost"
           size="sm"
           onClick={() => setIsFlipped(!isFlipped)}
-          className="h-7 gap-1 text-xs text-muted-foreground hover:text-foreground"
+          className="h-7 gap-1 text-sm text-muted-foreground hover:text-foreground"
         >
           <RotateCcw className="h-3 w-3" />
           Flip
@@ -136,7 +136,7 @@ export function StudySnaps() {
           variant="ghost"
           size="sm"
           onClick={handleNext}
-          className="h-7 gap-1 text-xs text-muted-foreground hover:text-foreground"
+          className="h-7 gap-1 text-sm text-muted-foreground hover:text-foreground"
         >
           Next
           <ChevronRight className="h-3.5 w-3.5" />

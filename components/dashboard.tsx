@@ -25,8 +25,8 @@ export function Dashboard() {
     >
       {/* Main Content Area */}
       <div className="flex-1 overflow-y-auto p-4 lg:p-6">
-        <div className="mx-auto max-w-4xl space-y-6">
-          {/* Video Player */}
+        <div className="mx-auto max-w-2xl space-y-6">
+          {/* Video Player - Reduced width */}
           <VideoPlayer ref={videoRef} url={DEMO_VIDEO_URL} />
 
           {/* On-Demand Generation Cards */}
@@ -37,8 +37,8 @@ export function Dashboard() {
         </div>
       </div>
 
-      {/* Right Sidebar */}
-      <aside className="flex w-full flex-col border-t border-border lg:w-[360px] lg:border-l lg:border-t-0">
+      {/* Right Sidebar - Increased width for text content */}
+      <aside className="flex w-full flex-col border-t border-border lg:w-[480px] lg:border-l lg:border-t-0">
         {/* Lecture Navigator - Top: scrollable within constrained height */}
         <div className="flex min-h-[200px] basis-1/2 flex-col overflow-hidden border-b border-border">
           <LectureNavigator onSeek={handleSeek} />
