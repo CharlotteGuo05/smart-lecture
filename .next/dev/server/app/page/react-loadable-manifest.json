@@ -1,0 +1,10 @@
+{
+  "[project]/node_modules/react-player/youtube.js [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/node_modules/react-player/youtube.js [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/node_modules_react-player_lib_Preview_cb072314.js",
+      "static/chunks/node_modules_9af54a67._.js",
+      "static/chunks/node_modules_react-player_youtube_6b02331d.js"
+    ]
+  }
+}
