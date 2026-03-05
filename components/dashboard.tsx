@@ -8,14 +8,29 @@ import { ProfessorChat } from "@/components/professor-chat"
 import { StudySnaps } from "@/components/study-snaps"
 import { KnowledgeMap } from "@/components/knowledge-map"
 import { DEMO_VIDEO_URL } from "@/lib/data"
-import { type VideoSummary } from "@/lib/gemini-client"
 
-export function Dashboard({ videoUrl, lectureData }: { videoUrl: string | null; lectureData: VideoSummary | null }) {
+// Define the blueprint structure that matches the API response
+interface BlueprintSection {
+  title: string;
+  subsections: { title: string; timestamp: string; summary: string }[];
+}
+
+interface Blueprint {
+  sections: BlueprintSection[];
+}
+
+export function Dashboard({ videoUrl, lectureData }: { videoUrl: string | null; lectureData: Blueprint | null }) {
   const videoRef = useRef<VideoPlayerRef>(null)
 
   const handleSeek = (seconds: number) => {
     videoRef.current?.seekTo(seconds)
   }
+
+// Helper function to extract video title from URL (simplified)
+function extractVideoTitle(url: string): string {
+  // For now, return a generic title. In a real implementation, you'd fetch the actual title
+  return "YouTube Lecture"
+}
 
   return (
     <motion.div
@@ -33,7 +48,10 @@ export function Dashboard({ videoUrl, lectureData }: { videoUrl: string | null; 
           {/* On-Demand Generation Cards */}
           <div className="grid gap-4 md:grid-cols-2">
             <StudySnaps />
-            <KnowledgeMap />
+            <KnowledgeMap 
+              videoTitle={videoUrl ? extractVideoTitle(videoUrl) : "Course Knowledge Map"} 
+              blueprint={lectureData} 
+            />
           </div>
         </div>
       </div>

@@ -1656,7 +1656,6 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$data$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/data.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$network$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Network$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/network.js [app-client] (ecmascript) <export default as Network>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/loader-circle.js [app-client] (ecmascript) <export default as Loader2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$xyflow$2f$react$2f$dist$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@xyflow/react/dist/esm/index.js [app-client] (ecmascript) <locals>");
@@ -1664,7 +1663,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$xyflow$2f$
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
-;
 ;
 ;
 ;
@@ -1679,7 +1677,7 @@ function RootNode({ data }) {
                 children: data.label
             }, void 0, false, {
                 fileName: "[project]/components/knowledge-map.tsx",
-                lineNumber: 22,
+                lineNumber: 32,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$xyflow$2f$react$2f$dist$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["Handle"], {
@@ -1688,13 +1686,13 @@ function RootNode({ data }) {
                 className: "!bg-primary"
             }, void 0, false, {
                 fileName: "[project]/components/knowledge-map.tsx",
-                lineNumber: 23,
+                lineNumber: 33,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/knowledge-map.tsx",
-        lineNumber: 21,
+        lineNumber: 31,
         columnNumber: 5
     }, this);
 }
@@ -1709,7 +1707,7 @@ function SectionNode({ data }) {
                 className: "!bg-muted-foreground"
             }, void 0, false, {
                 fileName: "[project]/components/knowledge-map.tsx",
-                lineNumber: 31,
+                lineNumber: 41,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1717,7 +1715,7 @@ function SectionNode({ data }) {
                 children: data.label
             }, void 0, false, {
                 fileName: "[project]/components/knowledge-map.tsx",
-                lineNumber: 32,
+                lineNumber: 42,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$xyflow$2f$react$2f$dist$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["Handle"], {
@@ -1726,13 +1724,13 @@ function SectionNode({ data }) {
                 className: "!bg-muted-foreground"
             }, void 0, false, {
                 fileName: "[project]/components/knowledge-map.tsx",
-                lineNumber: 33,
+                lineNumber: 43,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/knowledge-map.tsx",
-        lineNumber: 30,
+        lineNumber: 40,
         columnNumber: 5
     }, this);
 }
@@ -1747,7 +1745,7 @@ function SubNode({ data }) {
                 className: "!bg-muted-foreground/50"
             }, void 0, false, {
                 fileName: "[project]/components/knowledge-map.tsx",
-                lineNumber: 41,
+                lineNumber: 51,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1755,7 +1753,7 @@ function SubNode({ data }) {
                 children: data.label
             }, void 0, false, {
                 fileName: "[project]/components/knowledge-map.tsx",
-                lineNumber: 42,
+                lineNumber: 52,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1763,13 +1761,13 @@ function SubNode({ data }) {
                 children: data.timestamp
             }, void 0, false, {
                 fileName: "[project]/components/knowledge-map.tsx",
-                lineNumber: 43,
+                lineNumber: 53,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/knowledge-map.tsx",
-        lineNumber: 40,
+        lineNumber: 50,
         columnNumber: 5
     }, this);
 }
@@ -1779,9 +1777,10 @@ const nodeTypes = {
     section: SectionNode,
     sub: SubNode
 };
-function buildGraph() {
+function buildGraph(videoTitle, blueprint) {
     const nodes = [];
     const edges = [];
+    // Root node with video title
     nodes.push({
         id: "root",
         type: "root",
@@ -1790,12 +1789,18 @@ function buildGraph() {
             y: 0
         },
         data: {
-            label: "Course Knowledge Map"
+            label: videoTitle || "Course Knowledge Map"
         }
     });
+    if (!blueprint || !blueprint.sections || blueprint.sections.length === 0) {
+        return {
+            nodes,
+            edges
+        };
+    }
     const sectionSpacing = 220;
-    const startX = -((__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$data$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["blueprintData"].length - 1) * sectionSpacing / 2) + 400;
-    __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$data$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["blueprintData"].forEach((section, i)=>{
+    const startX = -((blueprint.sections.length - 1) * sectionSpacing / 2) + 400;
+    blueprint.sections.forEach((section, i)=>{
         const sectionId = `s-${i}`;
         const sectionX = startX + i * sectionSpacing;
         nodes.push({
@@ -1851,7 +1856,7 @@ function buildGraph() {
         edges
     };
 }
-function KnowledgeMap() {
+function KnowledgeMap({ videoTitle, blueprint }) {
     _s();
     const [isGenerated, setIsGenerated] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isGenerating, setIsGenerating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -1866,6 +1871,10 @@ function KnowledgeMap() {
             }["KnowledgeMap.useCallback[handleGenerate]"], 1200);
         }
     }["KnowledgeMap.useCallback[handleGenerate]"], []);
+    // Auto-generate when blueprint data is available
+    if (blueprint && blueprint.sections && blueprint.sections.length > 0 && !isGenerated && !isGenerating) {
+        handleGenerate();
+    }
     if (!isGenerated) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex flex-col items-center justify-center rounded-lg border border-dashed border-border bg-card p-8",
@@ -1874,7 +1883,7 @@ function KnowledgeMap() {
                     className: "mb-3 h-8 w-8 text-primary/50"
                 }, void 0, false, {
                     fileName: "[project]/components/knowledge-map.tsx",
-                    lineNumber: 126,
+                    lineNumber: 146,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1882,7 +1891,7 @@ function KnowledgeMap() {
                     children: "Knowledge Map"
                 }, void 0, false, {
                     fileName: "[project]/components/knowledge-map.tsx",
-                    lineNumber: 127,
+                    lineNumber: 147,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1890,12 +1899,12 @@ function KnowledgeMap() {
                     children: "Generate a structured knowledge map of the lecture content."
                 }, void 0, false, {
                     fileName: "[project]/components/knowledge-map.tsx",
-                    lineNumber: 128,
+                    lineNumber: 148,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                     onClick: handleGenerate,
-                    disabled: isGenerating,
+                    disabled: isGenerating || !blueprint?.sections?.length,
                     size: "sm",
                     className: "gap-2 bg-primary text-primary-foreground hover:bg-primary/90",
                     children: [
@@ -1903,30 +1912,38 @@ function KnowledgeMap() {
                             className: "h-3.5 w-3.5 animate-spin"
                         }, void 0, false, {
                             fileName: "[project]/components/knowledge-map.tsx",
-                            lineNumber: 138,
+                            lineNumber: 158,
                             columnNumber: 13
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$network$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Network$3e$__["Network"], {
                             className: "h-3.5 w-3.5"
                         }, void 0, false, {
                             fileName: "[project]/components/knowledge-map.tsx",
-                            lineNumber: 140,
+                            lineNumber: 160,
                             columnNumber: 13
                         }, this),
                         isGenerating ? "Generating..." : "Generate Knowledge Map"
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/knowledge-map.tsx",
-                    lineNumber: 131,
+                    lineNumber: 151,
                     columnNumber: 9
+                }, this),
+                blueprint && blueprint.sections && blueprint.sections.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: "mt-2 text-xs text-muted-foreground",
+                    children: "No blueprint data available"
+                }, void 0, false, {
+                    fileName: "[project]/components/knowledge-map.tsx",
+                    lineNumber: 165,
+                    columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/knowledge-map.tsx",
-            lineNumber: 125,
+            lineNumber: 145,
             columnNumber: 7
         }, this);
     }
-    const { nodes, edges } = buildGraph();
+    const { nodes, edges } = buildGraph(videoTitle, blueprint);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "rounded-lg border border-border bg-card",
         children: [
@@ -1937,7 +1954,7 @@ function KnowledgeMap() {
                         className: "h-4 w-4 text-primary"
                     }, void 0, false, {
                         fileName: "[project]/components/knowledge-map.tsx",
-                        lineNumber: 153,
+                        lineNumber: 176,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1945,13 +1962,13 @@ function KnowledgeMap() {
                         children: "Knowledge Map"
                     }, void 0, false, {
                         fileName: "[project]/components/knowledge-map.tsx",
-                        lineNumber: 154,
-                        columnNumber: 11
+                        lineNumber: 177,
+                        columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/knowledge-map.tsx",
-                lineNumber: 152,
+                lineNumber: 175,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1974,31 +1991,31 @@ function KnowledgeMap() {
                             size: 1
                         }, void 0, false, {
                             fileName: "[project]/components/knowledge-map.tsx",
-                            lineNumber: 167,
+                            lineNumber: 190,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$xyflow$2f$react$2f$dist$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["Controls"], {
                             className: "[&>button]:!border-border [&>button]:!bg-secondary [&>button]:!text-foreground [&>button]:hover:!bg-accent"
                         }, void 0, false, {
                             fileName: "[project]/components/knowledge-map.tsx",
-                            lineNumber: 168,
+                            lineNumber: 191,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/knowledge-map.tsx",
-                    lineNumber: 157,
+                    lineNumber: 180,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/knowledge-map.tsx",
-                lineNumber: 156,
+                lineNumber: 179,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/knowledge-map.tsx",
-        lineNumber: 151,
+        lineNumber: 174,
         columnNumber: 5
     }, this);
 }
@@ -2046,6 +2063,11 @@ function Dashboard({ videoUrl, lectureData }) {
     const handleSeek = (seconds)=>{
         videoRef.current?.seekTo(seconds);
     };
+    // Helper function to extract video title from URL (simplified)
+    function extractVideoTitle(url) {
+        // For now, return a generic title. In a real implementation, you'd fetch the actual title
+        return "YouTube Lecture";
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
         initial: {
             opacity: 0,
@@ -2071,7 +2093,7 @@ function Dashboard({ videoUrl, lectureData }) {
                             url: videoUrl || __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$data$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DEMO_VIDEO_URL"]
                         }, void 0, false, {
                             fileName: "[project]/components/dashboard.tsx",
-                            lineNumber: 31,
+                            lineNumber: 46,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2079,29 +2101,32 @@ function Dashboard({ videoUrl, lectureData }) {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$study$2d$snaps$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["StudySnaps"], {}, void 0, false, {
                                     fileName: "[project]/components/dashboard.tsx",
-                                    lineNumber: 35,
+                                    lineNumber: 50,
                                     columnNumber: 13
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$knowledge$2d$map$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["KnowledgeMap"], {}, void 0, false, {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$knowledge$2d$map$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["KnowledgeMap"], {
+                                    videoTitle: videoUrl ? extractVideoTitle(videoUrl) : "Course Knowledge Map",
+                                    blueprint: lectureData
+                                }, void 0, false, {
                                     fileName: "[project]/components/dashboard.tsx",
-                                    lineNumber: 36,
+                                    lineNumber: 51,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/dashboard.tsx",
-                            lineNumber: 34,
+                            lineNumber: 49,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/dashboard.tsx",
-                    lineNumber: 29,
+                    lineNumber: 44,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/dashboard.tsx",
-                lineNumber: 28,
+                lineNumber: 43,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
@@ -2114,12 +2139,12 @@ function Dashboard({ videoUrl, lectureData }) {
                             lectureData: lectureData
                         }, void 0, false, {
                             fileName: "[project]/components/dashboard.tsx",
-                            lineNumber: 45,
+                            lineNumber: 63,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 44,
+                        lineNumber: 62,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2128,24 +2153,24 @@ function Dashboard({ videoUrl, lectureData }) {
                             onSeek: handleSeek
                         }, void 0, false, {
                             fileName: "[project]/components/dashboard.tsx",
-                            lineNumber: 49,
+                            lineNumber: 67,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard.tsx",
-                        lineNumber: 48,
+                        lineNumber: 66,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard.tsx",
-                lineNumber: 42,
+                lineNumber: 60,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/dashboard.tsx",
-        lineNumber: 21,
+        lineNumber: 36,
         columnNumber: 5
     }, this);
 }
@@ -2349,12 +2374,19 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+// Helper function to extract video title from URL
+function extractVideoTitle(url) {
+    // For now, return a generic title. In a real implementation, you'd fetch the actual title
+    // This could be enhanced to use the YouTube Data API to get the actual video title
+    return "YouTube Lecture";
+}
 function Home() {
     _s();
     const [state, setState] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("idle");
     const [videoUrl, setVideoUrl] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [lectureData, setLectureData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null) // Blueprint data from API
     ;
+    const [videoTitle, setVideoTitle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const handleProcessVideo = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "Home.useCallback[handleProcessVideo]": async (url)=>{
             setState("loading");
@@ -2376,6 +2408,7 @@ function Home() {
                 // The new API returns blueprint and flashcards directly
                 setVideoUrl(url);
                 setLectureData(data.blueprint); // Use the blueprint data
+                setVideoTitle(extractVideoTitle(url)); // Set the video title
                 setState("active");
             } catch (error) {
                 console.error("Error processing video:", error);
@@ -2392,7 +2425,7 @@ function Home() {
                 isLoading: state === "loading"
             }, void 0, false, {
                 fileName: "[project]/app/page.tsx",
-                lineNumber: 48,
+                lineNumber: 57,
                 columnNumber: 7
             }, this),
             state === "idle" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2406,12 +2439,12 @@ function Home() {
                                 className: "h-10 w-10 text-primary"
                             }, void 0, false, {
                                 fileName: "[project]/app/page.tsx",
-                                lineNumber: 57,
+                                lineNumber: 66,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/page.tsx",
-                            lineNumber: 56,
+                            lineNumber: 65,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2421,7 +2454,7 @@ function Home() {
                                     children: "Smart Lecturer"
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.tsx",
-                                    lineNumber: 60,
+                                    lineNumber: 69,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2430,20 +2463,20 @@ function Home() {
                                         "Paste a YouTube lecture link, and AI will analyze the content,",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                             fileName: "[project]/app/page.tsx",
-                                            lineNumber: 64,
+                                            lineNumber: 73,
                                             columnNumber: 79
                                         }, this),
                                         "generating structured blueprints, flashcards, and knowledge maps."
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/page.tsx",
-                                    lineNumber: 63,
+                                    lineNumber: 72,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/page.tsx",
-                            lineNumber: 59,
+                            lineNumber: 68,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2468,7 +2501,7 @@ function Home() {
                                             className: "h-5 w-5 text-primary"
                                         }, void 0, false, {
                                             fileName: "[project]/app/page.tsx",
-                                            lineNumber: 78,
+                                            lineNumber: 87,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2476,41 +2509,41 @@ function Home() {
                                             children: feature.label
                                         }, void 0, false, {
                                             fileName: "[project]/app/page.tsx",
-                                            lineNumber: 79,
+                                            lineNumber: 88,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, feature.label, true, {
                                     fileName: "[project]/app/page.tsx",
-                                    lineNumber: 74,
+                                    lineNumber: 83,
                                     columnNumber: 17
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/app/page.tsx",
-                            lineNumber: 68,
+                            lineNumber: 77,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/page.tsx",
-                    lineNumber: 55,
+                    lineNumber: 64,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/page.tsx",
-                lineNumber: 54,
+                lineNumber: 63,
                 columnNumber: 9
             }, this),
             state === "loading" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex-1",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$loading$2d$screen$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["LoadingScreen"], {}, void 0, false, {
                     fileName: "[project]/app/page.tsx",
-                    lineNumber: 91,
+                    lineNumber: 100,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/page.tsx",
-                lineNumber: 90,
+                lineNumber: 99,
                 columnNumber: 9
             }, this),
             state === "active" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dashboard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dashboard"], {
@@ -2518,17 +2551,17 @@ function Home() {
                 lectureData: lectureData
             }, void 0, false, {
                 fileName: "[project]/app/page.tsx",
-                lineNumber: 95,
+                lineNumber: 104,
                 columnNumber: 30
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/page.tsx",
-        lineNumber: 47,
+        lineNumber: 56,
         columnNumber: 5
     }, this);
 }
-_s(Home, "CfUMBma8PXcOsMTzV40j2EfLUyA=");
+_s(Home, "2bg0HXCQ6157Y7y/CBPdMMGlkQg=");
 _c = Home;
 var _c;
 __turbopack_context__.k.register(_c, "Home");

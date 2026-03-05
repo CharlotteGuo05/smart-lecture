@@ -8,10 +8,18 @@ import { GraduationCap, BookOpen, Brain, Sparkles } from "lucide-react"
 
 type AppState = "idle" | "loading" | "active"
 
+// Helper function to extract video title from URL
+function extractVideoTitle(url: string): string {
+  // For now, return a generic title. In a real implementation, you'd fetch the actual title
+  // This could be enhanced to use the YouTube Data API to get the actual video title
+  return "YouTube Lecture"
+}
+
 export default function Home() {
   const [state, setState] = useState<AppState>("idle")
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
   const [lectureData, setLectureData] = useState<any>(null) // Blueprint data from API
+  const [videoTitle, setVideoTitle] = useState<string>("")
 
   const handleProcessVideo = useCallback(async (url: string) => {
     setState("loading")
@@ -35,6 +43,7 @@ export default function Home() {
       // The new API returns blueprint and flashcards directly
       setVideoUrl(url)
       setLectureData(data.blueprint) // Use the blueprint data
+      setVideoTitle(extractVideoTitle(url)) // Set the video title
       setState("active")
     } catch (error) {
       console.error("Error processing video:", error)

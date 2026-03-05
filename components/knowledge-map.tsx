@@ -16,6 +16,16 @@ import {
 } from "@xyflow/react"
 import "@xyflow/react/dist/style.css"
 
+// Define the blueprint structure that matches the API response
+interface BlueprintSection {
+  title: string;
+  subsections: { title: string; timestamp: string; summary: string }[];
+}
+
+interface Blueprint {
+  sections: BlueprintSection[];
+}
+
 function RootNode({ data }: { data: { label: string } }) {
   return (
     <div className="rounded-xl border-2 border-primary bg-primary/15 px-5 py-3 shadow-lg shadow-primary/5">
@@ -51,21 +61,26 @@ const nodeTypes: NodeTypes = {
   sub: SubNode,
 }
 
-function buildGraph() {
+function buildGraph(videoTitle: string, blueprint: Blueprint | null) {
   const nodes: Node[] = []
   const edges: Edge[] = []
 
+  // Root node with video title
   nodes.push({
     id: "root",
     type: "root",
     position: { x: 400, y: 0 },
-    data: { label: "Course Knowledge Map" },
+    data: { label: videoTitle || "Course Knowledge Map" },
   })
 
-  const sectionSpacing = 220
-  const startX = -(((blueprintData.length - 1) * sectionSpacing) / 2) + 400
+  if (!blueprint || !blueprint.sections || blueprint.sections.length === 0) {
+    return { nodes, edges }
+  }
 
-  blueprintData.forEach((section, i) => {
+  const sectionSpacing = 220
+  const startX = -(((blueprint.sections.length - 1) * sectionSpacing) / 2) + 400
+
+  blueprint.sections.forEach((section, i) => {
     const sectionId = `s-${i}`
     const sectionX = startX + i * sectionSpacing
 
@@ -108,7 +123,7 @@ function buildGraph() {
   return { nodes, edges }
 }
 
-export function KnowledgeMap() {
+export function KnowledgeMap({ videoTitle, blueprint }: { videoTitle: string; blueprint: Blueprint | null }) {
   const [isGenerated, setIsGenerated] = useState(false)
   const [isGenerating, setIsGenerating] = useState(false)
 
@@ -120,6 +135,11 @@ export function KnowledgeMap() {
     }, 1200)
   }, [])
 
+  // Auto-generate when blueprint data is available
+  if (blueprint && blueprint.sections && blueprint.sections.length > 0 && !isGenerated && !isGenerating) {
+    handleGenerate()
+  }
+
   if (!isGenerated) {
     return (
       <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border bg-card p-8">
@@ -130,7 +150,7 @@ export function KnowledgeMap() {
         </p>
         <Button
           onClick={handleGenerate}
-          disabled={isGenerating}
+          disabled={isGenerating || (!blueprint?.sections?.length)}
           size="sm"
           className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
         >
@@ -141,17 +161,20 @@ export function KnowledgeMap() {
           )}
           {isGenerating ? "Generating..." : "Generate Knowledge Map"}
         </Button>
+        {blueprint && blueprint.sections && blueprint.sections.length === 0 && (
+          <p className="mt-2 text-xs text-muted-foreground">No blueprint data available</p>
+        )}
       </div>
     )
   }
 
-  const { nodes, edges } = buildGraph()
+  const { nodes, edges } = buildGraph(videoTitle, blueprint)
 
   return (
     <div className="rounded-lg border border-border bg-card">
       <div className="flex items-center gap-2 border-b border-border px-4 py-4">
         <Network className="h-4 w-4 text-primary" />
-          <h3 className="text-2xl font-semibold text-foreground">Knowledge Map</h3>
+        <h3 className="text-2xl font-semibold text-foreground">Knowledge Map</h3>
       </div>
       <div className="h-[350px]">
         <ReactFlow
