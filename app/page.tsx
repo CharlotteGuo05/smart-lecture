@@ -11,13 +11,36 @@ type AppState = "idle" | "loading" | "active"
 export default function Home() {
   const [state, setState] = useState<AppState>("idle")
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
+  const [lectureData, setLectureData] = useState<any>(null) // Blueprint data from API
 
-  const handleProcessVideo = useCallback((url: string) => {
-    setVideoUrl(url)
+  const handleProcessVideo = useCallback(async (url: string) => {
     setState("loading")
-    setTimeout(() => {
+    
+    try {
+      const response = await fetch("/api/process-video", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ videoUrl: url }),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Failed to process video")
+      }
+
+      const data = await response.json()
+      
+      // The new API returns blueprint and flashcards directly
+      setVideoUrl(url)
+      setLectureData(data.blueprint) // Use the blueprint data
       setState("active")
-    }, 2000)
+    } catch (error) {
+      console.error("Error processing video:", error)
+      setState("idle")
+      // You might want to show an error message to the user here
+    }
   }, [])
 
   return (
@@ -69,7 +92,7 @@ export default function Home() {
         </div>
       )}
 
-      {state === "active" && <Dashboard videoUrl={videoUrl} />}
+      {state === "active" && <Dashboard videoUrl={videoUrl} lectureData={lectureData} />}
     </div>
   )
 }

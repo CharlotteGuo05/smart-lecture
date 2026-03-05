@@ -8,8 +8,9 @@ import { ProfessorChat } from "@/components/professor-chat"
 import { StudySnaps } from "@/components/study-snaps"
 import { KnowledgeMap } from "@/components/knowledge-map"
 import { DEMO_VIDEO_URL } from "@/lib/data"
+import { type VideoSummary } from "@/lib/gemini-client"
 
-export function Dashboard({ videoUrl }: { videoUrl: string | null }) {
+export function Dashboard({ videoUrl, lectureData }: { videoUrl: string | null; lectureData: VideoSummary | null }) {
   const videoRef = useRef<VideoPlayerRef>(null)
 
   const handleSeek = (seconds: number) => {
@@ -41,7 +42,7 @@ export function Dashboard({ videoUrl }: { videoUrl: string | null }) {
       <aside className="flex w-full flex-col border-t border-border lg:w-[480px] lg:border-l lg:border-t-0">
         {/* Lecture Navigator - Top: scrollable within constrained height */}
         <div className="flex min-h-[200px] basis-1/2 flex-col overflow-hidden border-b border-border">
-          <LectureNavigator onSeek={handleSeek} />
+          <LectureNavigator onSeek={handleSeek} lectureData={lectureData} />
         </div>
         {/* Professor Chat - Bottom: fills remaining space */}
         <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
