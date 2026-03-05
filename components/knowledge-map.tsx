@@ -176,7 +176,7 @@ export function KnowledgeMap({ videoTitle, blueprint }: { videoTitle: string; bl
         <Network className="h-4 w-4 text-primary" />
         <h3 className="text-2xl font-semibold text-foreground">Knowledge Map</h3>
       </div>
-      <div className="h-[350px]">
+      <div className="h-[400px]">
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -184,8 +184,8 @@ export function KnowledgeMap({ videoTitle, blueprint }: { videoTitle: string; bl
           fitView
           proOptions={{ hideAttribution: true }}
           className="bg-card"
-          minZoom={0.3}
-          maxZoom={1.5}
+          minZoom={0.2}
+          maxZoom={2.0}
         >
           <Background color="oklch(0.3 0 0)" gap={20} size={1} />
           <Controls

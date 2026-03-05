@@ -46,12 +46,14 @@ function extractVideoTitle(url: string): string {
           <VideoPlayer ref={videoRef} url={videoUrl || DEMO_VIDEO_URL} />
 
           {/* On-Demand Generation Cards */}
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="space-y-4">
             <StudySnaps />
-            <KnowledgeMap 
-              videoTitle={videoUrl ? extractVideoTitle(videoUrl) : "Course Knowledge Map"} 
-              blueprint={lectureData} 
-            />
+            <div className="w-full">
+              <KnowledgeMap 
+                videoTitle={videoUrl ? extractVideoTitle(videoUrl) : "Course Knowledge Map"} 
+                blueprint={lectureData} 
+              />
+            </div>
           </div>
         </div>
       </div>
