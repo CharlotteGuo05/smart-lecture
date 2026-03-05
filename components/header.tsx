@@ -11,7 +11,7 @@ interface HeaderProps {
 }
 
 export function Header({ onProcessVideo, isLoading }: HeaderProps) {
-  const [url, setUrl] = useState("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+  const [url, setUrl] = useState("")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

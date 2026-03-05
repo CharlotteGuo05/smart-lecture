@@ -9,7 +9,7 @@ import { StudySnaps } from "@/components/study-snaps"
 import { KnowledgeMap } from "@/components/knowledge-map"
 import { DEMO_VIDEO_URL } from "@/lib/data"
 
-export function Dashboard() {
+export function Dashboard({ videoUrl }: { videoUrl: string | null }) {
   const videoRef = useRef<VideoPlayerRef>(null)
 
   const handleSeek = (seconds: number) => {
@@ -27,7 +27,7 @@ export function Dashboard() {
       <div className="flex-1 overflow-y-auto p-4 lg:p-6">
         <div className="mx-auto max-w-2xl space-y-6">
           {/* Video Player - Reduced width */}
-          <VideoPlayer ref={videoRef} url={DEMO_VIDEO_URL} />
+          <VideoPlayer ref={videoRef} url={videoUrl || DEMO_VIDEO_URL} />
 
           {/* On-Demand Generation Cards */}
           <div className="grid gap-4 md:grid-cols-2">

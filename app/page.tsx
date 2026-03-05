@@ -10,8 +10,10 @@ type AppState = "idle" | "loading" | "active"
 
 export default function Home() {
   const [state, setState] = useState<AppState>("idle")
+  const [videoUrl, setVideoUrl] = useState<string | null>(null)
 
-  const handleProcessVideo = useCallback((_url: string) => {
+  const handleProcessVideo = useCallback((url: string) => {
+    setVideoUrl(url)
     setState("loading")
     setTimeout(() => {
       setState("active")
@@ -67,7 +69,7 @@ export default function Home() {
         </div>
       )}
 
-      {state === "active" && <Dashboard />}
+      {state === "active" && <Dashboard videoUrl={videoUrl} />}
     </div>
   )
 }
