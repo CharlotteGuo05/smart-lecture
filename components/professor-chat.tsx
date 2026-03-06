@@ -158,7 +158,7 @@ export function ProfessorChat({ onSeek, blueprint }: ProfessorChatProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="flex-1 flex flex-col gap-4 p-6">
-        <div className="flex-1 overflow-y-auto overflow-x-hidden space-y-4 pr-2">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden space-y-4 pr-2" style={{ maxHeight: 'calc(100% - 100px)' }}>
           {messages.length === 0 && (
             <div className="text-sm text-muted-foreground text-center py-8">
               Ask questions about the lecture content...

@@ -101,19 +101,45 @@ function extractVideoId(url) {
     return match ? match[1] : null;
 }
 // Helper function to create video context from URL
-function createVideoContext(youtubeUrl) {
+async function createVideoContext(youtubeUrl) {
     const videoId = extractVideoId(youtubeUrl);
+    // Try to fetch video metadata and transcript
+    let videoContent = "";
+    try {
+        // First, try to get video metadata
+        const metadataResponse = await fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent(youtubeUrl)}&format=json`);
+        if (metadataResponse.ok) {
+            const metadata = await metadataResponse.json();
+            videoContent += `Video Title: ${metadata.title || 'Unknown'}\n`;
+            videoContent += `Channel: ${metadata.author_name || 'Unknown'}\n`;
+        }
+    } catch (error) {
+        console.log("[process-video] Could not fetch video metadata:", error);
+    }
+    // Try to get transcript using youtube-transcript-api
+    try {
+        const transcriptResponse = await fetch(`/api/transcript?videoId=${videoId}`);
+        if (transcriptResponse.ok) {
+            const transcript = await transcriptResponse.json();
+            videoContent += `\nTranscript:\n${transcript.text}\n`;
+        } else {
+            videoContent += `\nNote: No transcript available for this video.\n`;
+        }
+    } catch (error) {
+        console.log("[process-video] Could not fetch transcript:", error);
+        videoContent += `\nNote: No transcript available for this video.\n`;
+    }
     return `YouTube Video Analysis Request:
 Video URL: ${youtubeUrl}
 Video ID: ${videoId || 'Unable to extract'}
+
+${videoContent}
 
 Please analyze this YouTube lecture video and generate:
 1. A structured lecture blueprint with timestamps
 2. 20 Quizlet-style flashcards
 
-Note: Since we don't have access to the actual video content or transcript, 
-please generate a comprehensive lecture structure based on typical educational 
-video patterns and the video URL information provided.`;
+Note: Use the available video content (title, metadata, and transcript if available) to create a relevant and accurate lecture structure. If no transcript is available, use the video title and context to infer the likely content and structure of the lecture.`;
 }
 /**
  * Basic runtime check for sections/subsections/timestamp structure & MM:SS format
@@ -241,7 +267,7 @@ async function POST(req) {
             });
         }
         // Fetch video transcript/metadata
-        const videoContent = createVideoContext(youtubeUrl);
+        const videoContent = await createVideoContext(youtubeUrl);
         const prompt = makeLLMPrompt(youtubeUrl, videoContent);
         console.log("[process-video] Sending prompt to Gemini with video content: ", prompt);
         const geminiClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$gemini$2d$client$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["getGenAIClient"])();
