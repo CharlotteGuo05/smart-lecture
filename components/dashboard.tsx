@@ -19,18 +19,18 @@ interface Blueprint {
   sections: BlueprintSection[];
 }
 
-export function Dashboard({ videoUrl, lectureData }: { videoUrl: string | null; lectureData: Blueprint | null }) {
+export function Dashboard({ videoUrl, lectureData, flashcards, showKnowledgeMap }: { videoUrl: string | null; lectureData: Blueprint | null; flashcards?: any; showKnowledgeMap?: boolean }) {
   const videoRef = useRef<VideoPlayerRef>(null)
 
   const handleSeek = (seconds: number) => {
     videoRef.current?.seekTo(seconds)
   }
 
-// Helper function to extract video title from URL (simplified)
-function extractVideoTitle(url: string): string {
-  // For now, return a generic title. In a real implementation, you'd fetch the actual title
-  return "YouTube Lecture"
-}
+  // Helper function to extract video title from URL (simplified)
+  function extractVideoTitle(url: string): string {
+    // For now, return a generic title. In a real implementation, you'd fetch the actual title
+    return "YouTube Lecture"
+  }
 
   return (
     <motion.div
@@ -47,13 +47,19 @@ function extractVideoTitle(url: string): string {
 
           {/* On-Demand Generation Cards */}
           <div className="space-y-4">
-            <StudySnaps />
-            <div className="w-full">
-              <KnowledgeMap 
-                videoTitle={videoUrl ? extractVideoTitle(videoUrl) : "Course Knowledge Map"} 
-                blueprint={lectureData} 
-              />
-            </div>
+            <StudySnaps 
+              flashcards={flashcards || null}
+              blueprint={lectureData} 
+              videoTitle={videoUrl ? extractVideoTitle(videoUrl) : "Course Knowledge Map"}
+            />
+            {showKnowledgeMap && (
+              <div className="w-full">
+                <KnowledgeMap 
+                  videoTitle={videoUrl ? extractVideoTitle(videoUrl) : "Course Knowledge Map"} 
+                  blueprint={lectureData} 
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

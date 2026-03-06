@@ -260,7 +260,7 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 }),
 "[project]/components/dashboard.tsx [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
 
-const e = new Error("Could not parse module '[project]/components/dashboard.tsx'\n\nUnexpected token. Did you mean `{'}'}` or `&rbrace;`?");
+const e = new Error("Could not parse module '[project]/components/dashboard.tsx'\n\nUnterminated string constant");
 e.code = 'MODULE_UNPARSABLE';
 throw e;
 }),

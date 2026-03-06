@@ -236,7 +236,7 @@ function Header({ onProcessVideo, isLoading }) {
 }),
 "[project]/components/dashboard.tsx [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
 
-const e = new Error("Could not parse module '[project]/components/dashboard.tsx'\n\nUnexpected token. Did you mean `{'}'}` or `&rbrace;`?");
+const e = new Error("Could not parse module '[project]/components/dashboard.tsx'\n\nUnterminated string constant");
 e.code = 'MODULE_UNPARSABLE';
 throw e;
 }),

@@ -19,7 +19,9 @@ export default function Home() {
   const [state, setState] = useState<AppState>("idle")
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
   const [lectureData, setLectureData] = useState<any>(null) // Blueprint data from API
+  const [flashcardsData, setFlashcardsData] = useState<any>(null) // Flashcards data from API
   const [videoTitle, setVideoTitle] = useState<string>("")
+  const [showKnowledgeMap, setShowKnowledgeMap] = useState<boolean>(false)
 
   const handleProcessVideo = useCallback(async (url: string) => {
     setState("loading")
@@ -43,8 +45,10 @@ export default function Home() {
       // The new API returns blueprint and flashcards directly
       setVideoUrl(url)
       setLectureData(data.blueprint) // Use the blueprint data
+      setFlashcardsData(data.flashcards) // Use the flashcards data
       setVideoTitle(extractVideoTitle(url)) // Set the video title
       setState("active")
+      setShowKnowledgeMap(false) // Reset knowledge map state when processing new video
     } catch (error) {
       console.error("Error processing video:", error)
       setState("idle")
@@ -101,7 +105,7 @@ export default function Home() {
         </div>
       )}
 
-      {state === "active" && <Dashboard videoUrl={videoUrl} lectureData={lectureData} />}
+      {state === "active" && <Dashboard videoUrl={videoUrl} lectureData={lectureData} flashcards={flashcardsData} showKnowledgeMap={showKnowledgeMap} />}
     </div>
   )
 }

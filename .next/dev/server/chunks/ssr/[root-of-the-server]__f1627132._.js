@@ -11,7 +11,7 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/app/layout.tsx [app-r
 }),
 "[project]/app/page.tsx [app-rsc] (ecmascript)", ((__turbopack_context__, module, exports) => {
 
-const e = new Error("Could not parse module '[project]/app/page.tsx'\n\nExpected '</', got '<eof>'");
+const e = new Error("Could not parse module '[project]/app/page.tsx'\n\nawait isn't allowed in non-async function");
 e.code = 'MODULE_UNPARSABLE';
 throw e;
 }),
