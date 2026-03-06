@@ -496,6 +496,10 @@
     visibility: hidden;
   }
 
+  .visible {
+    visibility: visible;
+  }
+
   .sr-only {
     clip-path: inset(50%);
     white-space: nowrap;
@@ -538,6 +542,10 @@
 
   .start {
     inset-inline-start: var(--spacing);
+  }
+
+  .end {
+    inset-inline-end: var(--spacing);
   }
 
   .-top-12 {
@@ -987,6 +995,10 @@
     height: 400px;
   }
 
+  .h-\[550px\] {
+    height: 550px;
+  }
+
   .h-\[calc\(100\%-1px\)\] {
     height: calc(100% - 1px);
   }
@@ -1083,10 +1095,6 @@
     width: calc(var(--spacing) * 1);
   }
 
-  .w-1\.5 {
-    width: calc(var(--spacing) * 1.5);
-  }
-
   .w-2 {
     width: calc(var(--spacing) * 2);
   }
@@ -1117,10 +1125,6 @@
 
   .w-5 {
     width: calc(var(--spacing) * 5);
-  }
-
-  .w-6 {
-    width: calc(var(--spacing) * 6);
   }
 
   .w-8 {
@@ -1862,16 +1866,22 @@
     background-color: var(--foreground);
   }
 
+  .bg-foreground\/40 {
+    background-color: var(--foreground);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-foreground\/40 {
+      background-color: color-mix(in oklab, var(--foreground) 40%, transparent);
+    }
+  }
+
   .bg-input {
     background-color: var(--input);
   }
 
   .bg-muted {
     background-color: var(--muted);
-  }
-
-  .bg-muted-foreground {
-    background-color: var(--muted-foreground);
   }
 
   .bg-muted\/50 {
@@ -2263,6 +2273,10 @@
     white-space: nowrap;
   }
 
+  .whitespace-pre-wrap {
+    white-space: pre-wrap;
+  }
+
   .text-accent-foreground {
     color: var(--accent-foreground);
   }
@@ -2372,6 +2386,14 @@
   .tabular-nums {
     --tw-numeric-spacing: tabular-nums;
     font-variant-numeric: var(--tw-ordinal, ) var(--tw-slashed-zero, ) var(--tw-numeric-figure, ) var(--tw-numeric-spacing, ) var(--tw-numeric-fraction, );
+  }
+
+  .underline {
+    text-decoration-line: underline;
+  }
+
+  .underline-offset-2 {
+    text-underline-offset: 2px;
   }
 
   .underline-offset-4 {
@@ -2617,16 +2639,12 @@
     --cell-size: calc(var(--spacing) * 8);
   }
 
-  .\[animation-delay\:0ms\] {
-    animation-delay: 0s;
+  .\[animation-delay\:-0\.1s\] {
+    animation-delay: -.1s;
   }
 
-  .\[animation-delay\:150ms\] {
-    animation-delay: .15s;
-  }
-
-  .\[animation-delay\:300ms\] {
-    animation-delay: .3s;
+  .\[animation-delay\:-0\.2s\] {
+    animation-delay: -.2s;
   }
 
   .perspective-\[1000px\] {
@@ -3087,18 +3105,6 @@
   }
 
   @media (hover: hover) {
-    .hover\:bg-primary\/20:hover {
-      background-color: var(--primary);
-    }
-
-    @supports (color: color-mix(in lab, red, red)) {
-      .hover\:bg-primary\/20:hover {
-        background-color: color-mix(in oklab, var(--primary) 20%, transparent);
-      }
-    }
-  }
-
-  @media (hover: hover) {
     .hover\:bg-primary\/90:hover {
       background-color: var(--primary);
     }
@@ -3155,6 +3161,18 @@
   @media (hover: hover) {
     .hover\:text-primary:hover {
       color: var(--primary);
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:text-primary\/80:hover {
+      color: var(--primary);
+    }
+
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:text-primary\/80:hover {
+        color: color-mix(in oklab, var(--primary) 80%, transparent);
+      }
     }
   }
 

@@ -237,7 +237,8 @@ Blueprint rules:
 - Each section must have a "title" string.
 - Each subsection must have BOTH a "title" and a "timestamp" string field.
 - Each subsection MUST also include a "summary" string field.
-- Each "summary" must be 3–5 complete sentences (plain text). It should concisely explain the key ideas, definitions, and/or example(s) covered in that subsection.
+- Each "summary" MUST be 3–5 complete sentences (plain text). It should concisely explain the key ideas, definitions, and/or example(s) covered in that subsection.
+- Summaries should be comprehensive and detailed, providing enough context for a student to understand what was covered in that specific part of the lecture.
 - Do not use bullet points in summaries. Do not mention that you are an AI. Do not refer to "the video"; summarize the content directly.
 - All timestamps MUST be in "HH:MM:SS" (hours:minutes:seconds, zero-padded) and represent the starting point of the subsection in the video.
 - Timestamp formatting MUST be strictly zero-padded to 2 digits per field:

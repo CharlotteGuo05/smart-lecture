@@ -1,164 +1,218 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import type React from "react"
+import { useChat } from "@ai-sdk/react"
+import { useEffect, useRef, useState } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import {
-  type ChatMessage,
-  mockResponses,
-  defaultResponse,
-} from "@/lib/data"
-import { MessageSquare, Send, Clock, Bot, User } from "lucide-react"
+import { MessageSquare, Send } from "lucide-react"
+import type { Section } from "@/lib/data"
 
-interface ProfessorChatProps {
-  onSeek: (seconds: number) => void
+// Define UIMessage type for TypeScript - using AI SDK's type
+import type { UIMessage } from "ai"
+
+// Define the blueprint structure that matches the API response
+interface BlueprintSection {
+  title: string;
+  subsections: { title: string; timestamp: string; summary: string }[];
 }
 
-export function ProfessorChat({ onSeek }: ProfessorChatProps) {
-  const [messages, setMessages] = useState<ChatMessage[]>([])
+interface Blueprint {
+  sections: BlueprintSection[];
+}
+
+interface ProfessorChatProps {
+  onSeek?: (seconds: number) => void;
+  blueprint?: Blueprint | null;
+}
+
+export function ProfessorChat({ onSeek, blueprint }: ProfessorChatProps) {
   const [input, setInput] = useState("")
-  const [isTyping, setIsTyping] = useState(false)
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const { messages, sendMessage } = useChat()
+  const bottomRef = useRef<HTMLDivElement | null>(null)
 
+  const lastMessage = messages[messages.length - 1]
+  const lastTextLength =
+    lastMessage?.parts
+      ?.filter((p) => p.type === "text")
+      .map((p: any) => p.text)
+      .join("")?.length ?? 0
+  const scrollKey = `${lastMessage?.id ?? "none"}:${lastTextLength}:${isLoading}`
+
+  // Keep the latest message visible as the conversation grows.
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" })
+  }, [scrollKey])
+
+  const TypingIndicator = () => (
+    <div className="flex justify-start">
+      <div className="max-w-[85%] rounded-lg px-4 py-2 bg-muted text-foreground">
+        <div className="flex items-center gap-1 h-5">
+          <span className="w-2 h-2 rounded-full bg-foreground/40 animate-bounce [animation-delay:-0.2s]" />
+          <span className="w-2 h-2 rounded-full bg-foreground/40 animate-bounce [animation-delay:-0.1s]" />
+          <span className="w-2 h-2 rounded-full bg-foreground/40 animate-bounce" />
+        </div>
+      </div>
+    </div>
+  )
+
+  const parseHHMMSSToSeconds = (timestamp: string) => {
+    const match = timestamp.match(/^(\d{2}):(\d{2}):(\d{2})$/)
+    if (!match) return null
+    const [, hh, mm, ss] = match
+    const hours = Number(hh)
+    const minutes = Number(mm)
+    const seconds = Number(ss)
+    if (
+      Number.isNaN(hours) ||
+      Number.isNaN(minutes) ||
+      Number.isNaN(seconds) ||
+      minutes > 59 ||
+      seconds > 59
+    )
+      return null
+    return hours * 3600 + minutes * 60 + seconds
+  }
+
+  const renderTextWithClickableTimestamps = (
+    text: string,
+    keyPrefix: string,
+  ) => {
+    // Enforce HH:MM:SS only.
+    const re = /\b\d{2}:\d{2}:\d{2}\b/g
+    const parts: React.ReactNode[] = []
+    let lastIndex = 0
+    let match: RegExpExecArray | null
+
+    while ((match = re.exec(text)) !== null) {
+      const ts = match[0]
+      const start = match.index
+      const end = start + ts.length
+
+      if (start > lastIndex) {
+        parts.push(text.slice(lastIndex, start))
+      }
+
+      const seconds = parseHHMMSSToSeconds(ts)
+      if (seconds === null || !onSeek) {
+        parts.push(ts)
+      } else {
+        parts.push(
+          <button
+            key={`${keyPrefix}-ts-${start}`}
+            type="button"
+            onClick={() => {
+              console.log("[chat] click timestamp", ts, "=>", seconds)
+              onSeek(seconds)
+            }}
+            className="font-mono text-primary underline underline-offset-2 hover:text-primary/80"
+            aria-label={`Seek to ${ts}`}
+          >
+            {ts}
+          </button>,
+        )
+      }
+
+      lastIndex = end
     }
-  }, [messages, isTyping])
 
-  const handleSend = () => {
-    if (!input.trim() || isTyping) return
-
-    const userMessage: ChatMessage = {
-      id: `user-${Date.now()}`,
-      role: "user",
-      content: input.trim(),
+    if (lastIndex < text.length) {
+      parts.push(text.slice(lastIndex))
     }
 
-    setMessages((prev) => [...prev, userMessage])
-    const query = input.trim().toLowerCase()
-    setInput("")
-    setIsTyping(true)
+    return parts
+  }
 
-    setTimeout(() => {
-      const matched = mockResponses.find((r) =>
-        r.keywords.some((k) => query.includes(k))
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!input.trim()) return
+
+    try {
+      setIsLoading(true)
+      await sendMessage(
+        { text: input },
+        {
+          body: {
+            blueprint,
+          },
+        },
       )
-      const response = matched
-        ? { ...matched.response, id: `r-${Date.now()}` }
-        : { ...defaultResponse, id: `r-${Date.now()}` }
-
-      setMessages((prev) => [...prev, response])
-      setIsTyping(false)
-    }, 1200)
+      setInput("")
+    } catch (error) {
+      console.error("Failed to send message:", error)
+      // TODO: Show user-friendly error message
+      // You could add a toast notification here
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-        <MessageSquare className="h-4 w-4 text-primary" />
-        <h3 className="text-sm font-semibold text-foreground">AI Professor</h3>
-      </div>
-
-      <ScrollArea className="flex-1 p-3" ref={scrollRef}>
-        <div className="space-y-3">
+    <Card className="h-[550px] flex flex-col">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <MessageSquare className="h-5 w-5" />
+          Professor Chat
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="flex-1 min-h-0 flex flex-col gap-4">
+        <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden space-y-4 pr-2">
           {messages.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-8 text-center">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                <Bot className="h-5 w-5 text-primary" />
-              </div>
-              <p className="text-base text-muted-foreground">
-                Ask the AI Professor a question<br />
-                and get answers based on the lecture content.
-              </p>
+            <div className="text-sm text-muted-foreground text-center py-8">
+              Ask questions about the lecture content...
             </div>
           )}
-          {messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-            >
-              {msg.role === "assistant" && (
-                <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/15">
-                  <Bot className="h-3 w-3 text-primary" />
-                </div>
-              )}
-              <div
-                className={`max-w-[85%] rounded-lg px-3 py-2 text-base leading-relaxed ${
-                  msg.role === "user"
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-accent text-foreground"
-                }`}
-              >
-                <p>{msg.content}</p>
-                {msg.citations && msg.citations.length > 0 && (
-                  <div className="mt-2 flex flex-wrap gap-1">
-                    {msg.citations.map((cite, i) => (
-                      <Button
-                        key={i}
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => onSeek(cite.seconds)}
-                        className="h-5 gap-1 rounded-sm bg-primary/10 px-1.5 py-0 text-sm font-medium text-primary hover:bg-primary/20 hover:text-primary"
-                      >
-                        <Clock className="h-2.5 w-2.5" />
-                        {cite.timestamp} - {cite.text}
-                      </Button>
-                    ))}
-                  </div>
-                )}
-              </div>
-              {msg.role === "user" && (
-                <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-secondary">
-                  <User className="h-3 w-3 text-muted-foreground" />
-                </div>
-              )}
-            </div>
-          ))}
-          {isTyping && (
-            <div className="flex items-center gap-2">
-              <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/15">
-                <Bot className="h-3 w-3 text-primary" />
-              </div>
-              <div className="rounded-lg bg-accent px-3 py-2">
-                <div className="flex gap-1">
-                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:0ms]" />
-                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:150ms]" />
-                  <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:300ms]" />
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </ScrollArea>
 
-      <div className="border-t border-border p-3">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault()
-            handleSend()
-          }}
-          className="flex gap-2"
-        >
+          {messages.map((message: UIMessage) => {
+            const isUser = message.role === "user"
+
+            return (
+              <div
+                key={message.id}
+                className={`flex ${isUser ? "justify-end" : "justify-start"}`}
+              >
+                <div
+                  className={`max-w-[85%] rounded-lg px-4 py-2 ${
+                    isUser
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-foreground"
+                  }`}
+                >
+                  <div className="text-sm whitespace-pre-wrap">
+                    {message.parts?.map((part, i) =>
+                      part.type === "text" ? (
+                        <span key={`${message.id}-${i}`}>
+                          {renderTextWithClickableTimestamps(
+                            part.text,
+                            `${message.id}-${i}`,
+                          )}
+                        </span>
+                      ) : null,
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+
+          {isLoading && <TypingIndicator />}
+          <div ref={bottomRef} />
+        </div>
+
+        <form onSubmit={handleSubmit} className="flex gap-2">
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask the professor..."
-            className="h-8 flex-1 bg-secondary text-base text-foreground placeholder:text-muted-foreground"
-            disabled={isTyping}
+            placeholder="Ask about the lecture..."
+            className="flex-1"
           />
-          <Button
-            type="submit"
-            size="sm"
-            disabled={!input.trim() || isTyping}
-            className="h-8 w-8 bg-primary p-0 text-primary-foreground hover:bg-primary/90"
-          >
-            <Send className="h-3.5 w-3.5" />
-            <span className="sr-only">Send message</span>
+          <Button type="submit" size="icon" disabled={!input.trim()}>
+            <Send className="h-4 w-4" />
           </Button>
         </form>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   )
 }
