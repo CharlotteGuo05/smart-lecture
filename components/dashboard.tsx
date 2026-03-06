@@ -5,8 +5,7 @@ import { motion } from "framer-motion"
 import { VideoPlayer, type VideoPlayerRef } from "@/components/video-player"
 import { LectureNavigator } from "@/components/lecture-navigator"
 import { ProfessorChat } from "@/components/professor-chat"
-import { StudySnaps } from "@/components/study-snaps"
-import { KnowledgeMap } from "@/components/knowledge-map"
+import { StudyTools } from "@/components/study-tools"
 import { DEMO_VIDEO_URL } from "@/lib/data"
 
 // Define the blueprint structure that matches the API response
@@ -19,7 +18,7 @@ interface Blueprint {
   sections: BlueprintSection[];
 }
 
-export function Dashboard({ videoUrl, lectureData, flashcards, showKnowledgeMap }: { videoUrl: string | null; lectureData: Blueprint | null; flashcards?: any; showKnowledgeMap?: boolean }) {
+export function Dashboard({ videoUrl, lectureData, flashcards }: { videoUrl: string | null; lectureData: Blueprint | null; flashcards?: any }) {
   const videoRef = useRef<VideoPlayerRef>(null)
 
   const handleSeek = (seconds: number) => {
@@ -47,19 +46,11 @@ export function Dashboard({ videoUrl, lectureData, flashcards, showKnowledgeMap 
 
           {/* On-Demand Generation Cards */}
           <div className="space-y-4">
-            <StudySnaps 
-              flashcards={flashcards || null}
+            <StudyTools 
               blueprint={lectureData} 
+              flashcards={flashcards || null}
               videoTitle={videoUrl ? extractVideoTitle(videoUrl) : "Course Knowledge Map"}
             />
-            {showKnowledgeMap && (
-              <div className="w-full">
-                <KnowledgeMap 
-                  videoTitle={videoUrl ? extractVideoTitle(videoUrl) : "Course Knowledge Map"} 
-                  blueprint={lectureData} 
-                />
-              </div>
-            )}
           </div>
         </div>
       </div>

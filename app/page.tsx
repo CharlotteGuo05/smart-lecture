@@ -105,7 +105,7 @@ export default function Home() {
         </div>
       )}
 
-      {state === "active" && <Dashboard videoUrl={videoUrl} lectureData={lectureData} flashcards={flashcardsData} showKnowledgeMap={showKnowledgeMap} />}
+      {state === "active" && <Dashboard videoUrl={videoUrl} lectureData={lectureData} flashcards={flashcardsData} />}
     </div>
   )
 }
