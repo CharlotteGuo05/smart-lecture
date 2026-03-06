@@ -9,128 +9,21 @@ function extractVideoId(url: string): string | null {
   return match ? match[1] : null
 }
 
-// Helper function to fetch video transcript using YouTube Data API
-async function fetchVideoTranscript(videoId: string): Promise<string> {
-  const apiKey = process.env.YOUTUBE_API_KEY
-  if (!apiKey) {
-    throw new Error("YouTube API key not configured")
-  }
-
-  try {
-    // First, get the video details
-    const videoResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${apiKey}`
-    )
-    
-    if (!videoResponse.ok) {
-      throw new Error("Failed to fetch video details")
-    }
-
-    const videoData = await videoResponse.json()
-    const video = videoData.items[0]
-    
-    if (!video) {
-      throw new Error("Video not found")
-    }
-
-    // Get video metadata
-    const title = video.snippet.title
-    const description = video.snippet.description
-    const channel = video.snippet.channelTitle
-    const tags = video.snippet.tags || []
-
-    // Try to get captions if available
-    let transcript = await fetchVideoCaptions(videoId, apiKey)
-    
-    if (!transcript) {
-      // If no captions, create a rich context from metadata
-      transcript = `Video Title: ${title}
-Channel: ${channel}
-Description: ${description}
-Tags: ${tags.join(', ')}
-
-Note: Auto-generated captions are not available for this video.
-Using video metadata and description for analysis.`
-    }
-
-    return transcript
-  } catch (error) {
-    // Fallback to basic metadata if API fails
-    return `Video ID: ${videoId}
-Note: Unable to fetch detailed video information.
-Using basic video ID for analysis.`
-  }
-}
-
-// Helper function to fetch video captions
-async function fetchVideoCaptions(videoId: string, apiKey: string): Promise<string | null> {
-  try {
-    // Get available captions
-    const captionResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=${videoId}&key=${apiKey}`
-    )
-    
-    if (!captionResponse.ok) {
-      return null
-    }
-
-    const captionData = await captionResponse.json()
-    
-    if (!captionData.items || captionData.items.length === 0) {
-      return null
-    }
-
-    // Find the best available caption track (auto-generated or manual)
-    const captionTrack = captionData.items.find(
-      (item: any) => item.snippet.trackKind === 'asr' || item.snippet.trackKind === 'standard'
-    )
-    
-    if (!captionTrack) {
-      return null
-    }
-
-    // Get the actual caption content
-    const captionId = captionTrack.id
-    const captionContentResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/captions/${captionId}?tfmt=srt&key=${apiKey}`
-    )
-    
-    if (!captionContentResponse.ok) {
-      return null
-    }
-
-    const captionText = await captionContentResponse.text()
-    
-    // Convert SRT format to plain text
-    const plainText = convertSRTToText(captionText)
-    
-    return plainText
-  } catch (error) {
-    return null
-  }
-}
-
-// Helper function to convert SRT caption format to plain text
-function convertSRTToText(srtContent: string): string {
-  // Remove SRT timing and numbering, keep only the text
-  const lines = srtContent.split('\n')
-  const textLines: string[] = []
+// Helper function to create video context from URL
+function createVideoContext(youtubeUrl: string): string {
+  const videoId = extractVideoId(youtubeUrl)
   
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim()
-    
-    // Skip empty lines, numbers, and timing lines
-    if (line === '' || /^\d+$/.test(line) || /-->/.test(line)) {
-      continue
-    }
-    
-    // Add text lines, but avoid duplicates
-    if (line && !textLines.includes(line)) {
-      textLines.push(line)
-    }
-  }
-  
-  return textLines.join(' ')
+  return `YouTube Video Analysis Request:
+Video URL: ${youtubeUrl}
+Video ID: ${videoId || 'Unable to extract'}
+
+Please analyze this YouTube lecture video and generate:
+1. A structured lecture blueprint with timestamps
+2. 20 Quizlet-style flashcards
+
+Note: Since we don't have access to the actual video content or transcript, 
+please generate a comprehensive lecture structure based on typical educational 
+video patterns and the video URL information provided.`
 }
 
 type BlueprintSection = {
@@ -293,7 +186,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Fetch video transcript/metadata
-    const videoContent = await fetchVideoTranscript(videoId);
+    const videoContent = createVideoContext(youtubeUrl);
 
     const prompt = makeLLMPrompt(youtubeUrl, videoContent);
 

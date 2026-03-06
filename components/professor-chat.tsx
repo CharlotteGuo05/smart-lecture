@@ -157,8 +157,8 @@ export function ProfessorChat({ onSeek, blueprint }: ProfessorChatProps) {
           Professor Chat
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex-1 min-h-0 flex flex-col gap-4">
-        <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden space-y-4 pr-2">
+      <CardContent className="flex-1 flex flex-col gap-4 p-6">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden space-y-4 pr-2">
           {messages.length === 0 && (
             <div className="text-sm text-muted-foreground text-center py-8">
               Ask questions about the lecture content...
@@ -201,17 +201,19 @@ export function ProfessorChat({ onSeek, blueprint }: ProfessorChatProps) {
           <div ref={bottomRef} />
         </div>
 
-        <form onSubmit={handleSubmit} className="flex gap-2">
-          <Input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about the lecture..."
-            className="flex-1"
-          />
-          <Button type="submit" size="icon" disabled={!input.trim()}>
-            <Send className="h-4 w-4" />
-          </Button>
-        </form>
+        <div className="border-t pt-4">
+          <form onSubmit={handleSubmit} className="flex gap-2">
+            <Input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask about the lecture..."
+              className="flex-1"
+            />
+            <Button type="submit" size="icon" disabled={!input.trim()}>
+              <Send className="h-4 w-4" />
+            </Button>
+          </form>
+        </div>
       </CardContent>
     </Card>
   )

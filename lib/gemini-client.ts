@@ -8,7 +8,7 @@ const globalForGenAI = global as unknown as {
 export const getGenAIClient = () => {
   if (!globalForGenAI.genai) {
     console.log("Initializing Singleton Gemini Client...");
-    globalForGenAI.genai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+    globalForGenAI.genai = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY!);
   }
   return globalForGenAI.genai;
 };

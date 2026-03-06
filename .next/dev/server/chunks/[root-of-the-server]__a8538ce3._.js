@@ -49,7 +49,7 @@ const globalForGenAI = /*TURBOPACK member replacement*/ __turbopack_context__.g;
 const getGenAIClient = ()=>{
     if (!globalForGenAI.genai) {
         console.log("Initializing Singleton Gemini Client...");
-        globalForGenAI.genai = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$google$2f$generative$2d$ai$2f$dist$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["GoogleGenerativeAI"](process.env.GEMINI_API_KEY);
+        globalForGenAI.genai = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$google$2f$generative$2d$ai$2f$dist$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["GoogleGenerativeAI"](process.env.GOOGLE_GENERATIVE_AI_API_KEY);
     }
     return globalForGenAI.genai;
 };
@@ -100,96 +100,20 @@ function extractVideoId(url) {
     const match = url.match(regex);
     return match ? match[1] : null;
 }
-// Helper function to fetch video transcript using YouTube Data API
-async function fetchVideoTranscript(videoId) {
-    const apiKey = process.env.YOUTUBE_API_KEY;
-    if (!apiKey) {
-        throw new Error("YouTube API key not configured");
-    }
-    try {
-        // First, get the video details
-        const videoResponse = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${apiKey}`);
-        if (!videoResponse.ok) {
-            throw new Error("Failed to fetch video details");
-        }
-        const videoData = await videoResponse.json();
-        const video = videoData.items[0];
-        if (!video) {
-            throw new Error("Video not found");
-        }
-        // Get video metadata
-        const title = video.snippet.title;
-        const description = video.snippet.description;
-        const channel = video.snippet.channelTitle;
-        const tags = video.snippet.tags || [];
-        // Try to get captions if available
-        let transcript = await fetchVideoCaptions(videoId, apiKey);
-        if (!transcript) {
-            // If no captions, create a rich context from metadata
-            transcript = `Video Title: ${title}
-Channel: ${channel}
-Description: ${description}
-Tags: ${tags.join(', ')}
+// Helper function to create video context from URL
+function createVideoContext(youtubeUrl) {
+    const videoId = extractVideoId(youtubeUrl);
+    return `YouTube Video Analysis Request:
+Video URL: ${youtubeUrl}
+Video ID: ${videoId || 'Unable to extract'}
 
-Note: Auto-generated captions are not available for this video.
-Using video metadata and description for analysis.`;
-        }
-        return transcript;
-    } catch (error) {
-        // Fallback to basic metadata if API fails
-        return `Video ID: ${videoId}
-Note: Unable to fetch detailed video information.
-Using basic video ID for analysis.`;
-    }
-}
-// Helper function to fetch video captions
-async function fetchVideoCaptions(videoId, apiKey) {
-    try {
-        // Get available captions
-        const captionResponse = await fetch(`https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=${videoId}&key=${apiKey}`);
-        if (!captionResponse.ok) {
-            return null;
-        }
-        const captionData = await captionResponse.json();
-        if (!captionData.items || captionData.items.length === 0) {
-            return null;
-        }
-        // Find the best available caption track (auto-generated or manual)
-        const captionTrack = captionData.items.find((item)=>item.snippet.trackKind === 'asr' || item.snippet.trackKind === 'standard');
-        if (!captionTrack) {
-            return null;
-        }
-        // Get the actual caption content
-        const captionId = captionTrack.id;
-        const captionContentResponse = await fetch(`https://www.googleapis.com/youtube/v3/captions/${captionId}?tfmt=srt&key=${apiKey}`);
-        if (!captionContentResponse.ok) {
-            return null;
-        }
-        const captionText = await captionContentResponse.text();
-        // Convert SRT format to plain text
-        const plainText = convertSRTToText(captionText);
-        return plainText;
-    } catch (error) {
-        return null;
-    }
-}
-// Helper function to convert SRT caption format to plain text
-function convertSRTToText(srtContent) {
-    // Remove SRT timing and numbering, keep only the text
-    const lines = srtContent.split('\n');
-    const textLines = [];
-    for(let i = 0; i < lines.length; i++){
-        const line = lines[i].trim();
-        // Skip empty lines, numbers, and timing lines
-        if (line === '' || /^\d+$/.test(line) || /-->/.test(line)) {
-            continue;
-        }
-        // Add text lines, but avoid duplicates
-        if (line && !textLines.includes(line)) {
-            textLines.push(line);
-        }
-    }
-    return textLines.join(' ');
+Please analyze this YouTube lecture video and generate:
+1. A structured lecture blueprint with timestamps
+2. 20 Quizlet-style flashcards
+
+Note: Since we don't have access to the actual video content or transcript, 
+please generate a comprehensive lecture structure based on typical educational 
+video patterns and the video URL information provided.`;
 }
 /**
  * Basic runtime check for sections/subsections/timestamp structure & MM:SS format
@@ -317,7 +241,7 @@ async function POST(req) {
             });
         }
         // Fetch video transcript/metadata
-        const videoContent = await fetchVideoTranscript(videoId);
+        const videoContent = createVideoContext(youtubeUrl);
         const prompt = makeLLMPrompt(youtubeUrl, videoContent);
         console.log("[process-video] Sending prompt to Gemini with video content: ", prompt);
         const geminiClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$gemini$2d$client$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["getGenAIClient"])();
